@@ -63,6 +63,7 @@ function DashBoard() {
     try {
       if (!session?.user.isSubscribed) {
         setOpenPopup(true);
+        return;
       }
       const response = await axios.get("/api/feedback-analysis");
       setAiSummary(response.data);
