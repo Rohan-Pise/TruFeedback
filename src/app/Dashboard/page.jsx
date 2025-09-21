@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 import { TbRefresh } from "react-icons/tb";
 import PopUp from "../../Components/DialogBox";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
 function DashBoard() {
   const { data: session, update } = useSession();
