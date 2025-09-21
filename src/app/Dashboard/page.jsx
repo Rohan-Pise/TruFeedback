@@ -1,8 +1,6 @@
 "use client";
 import {Button,Box} from "@mui/material";
-import React, { useState, useEffect } from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import Stack from "@mui/material/Stack";
+import  { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Card from "@mui/material/Card";
