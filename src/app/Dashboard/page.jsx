@@ -336,7 +336,7 @@ function DashBoard() {
                       </div>
                     }
                     cancelText="Maybe Later"
-                    actionText="Upgrade Now 🚀"
+                    actionText="Upgrade Now @ 25/-🚀"
                   />
                 </div>
                 <div >

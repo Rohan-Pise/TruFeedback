@@ -112,7 +112,7 @@ export default function Navbar() {
               <PopUp
                     open={openDialog}
                     onClose={() => setOpenDialog(false)}
-                    title="What You Get with PRO @ 49/- 🚀"
+                    title="What You Get with PRO @ 25/- 🚀"
                     content={
                       <div>
                         You need a <strong>PRO Subscription</strong> to use AI

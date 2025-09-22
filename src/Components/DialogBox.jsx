@@ -58,7 +58,7 @@ export default function PopUp({
 
         {/* Upgrade */}
         
-       <RazorPayCheckout amount={1} onClick={onClose}/>
+       <RazorPayCheckout amount={25} onClick={onClose}/>
        
       </DialogActions>
     </Dialog>
