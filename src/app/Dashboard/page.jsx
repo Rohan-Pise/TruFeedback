@@ -1,6 +1,6 @@
 "use client";
-import {Button,Box} from "@mui/material";
-import  { useState, useEffect } from "react";
+import { Button, Box } from "@mui/material";
+import { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Card from "@mui/material/Card";
@@ -23,7 +23,6 @@ function DashBoard() {
   const [aiSummary, setAiSummary] = useState({});
   const [showSummary, setShowSummary] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
-
 
   async function fetchSwitchState() {
     try {
@@ -195,7 +194,6 @@ function DashBoard() {
               </div>
             </motion.div>
 
-              
             <div className="  flex flex-col  items-center m-2 gap-4 rounded-lg sm:flex-row sm:gap-2.5 ">
               {/* Looping the feddbacks and rendering them on UI */}
 
@@ -231,18 +229,22 @@ function DashBoard() {
                       >
                         {/* Delete Button */}
                         <CardContent>
-                          <Typography variant="h6" sx={{
-                            color:"white",
-                            opacity:"80%",
-                            wordBreak: "break-word" // prevent overflow on long feedback messages
-                          }}>
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              color: "white",
+                              opacity: "80%",
+                              wordBreak: "break-word", // prevent overflow on long feedback messages
+                            }}
+                          >
                             {feedback.message}{" "}
                             {/* Replace with your feedback message */}
                           </Typography>
-                          <Typography sx={{
-
-                          }}
-                            variant="body1" color="text.secondary">
+                          <Typography
+                            sx={{}}
+                            variant="body1"
+                            color="text.secondary"
+                          >
                             {new Date(feedback.createdAt).toLocaleDateString(
                               "en-GB",
                               {
@@ -276,10 +278,12 @@ function DashBoard() {
                     </motion.div>
                   )))
                 ) : (
-                  <div className=" m-auto font-bold text-fuchsia-50 opacity-80 text-3xl p-5 rounded">You have not reeceived any Feedback Yet ! </div>
+                  <div className=" m-auto font-bold text-fuchsia-50 opacity-80 text-3xl p-5 rounded">
+                    You have not reeceived any Feedback Yet !{" "}
+                  </div>
                 )}
               </div>
-              <div className=" bg-white/20 backdrop-blur-md border border-white/30 rounded-xl p-4 flex flex-col gap-2 items-center lg:w-[30%] order-1 sm:order-2 sm:h-[75vh] sm:w-[40%] ">
+              <div className=" bg-white/20 backdrop-blur-md border border-white/30 rounded-xl p-4 flex flex-col gap-2 items-center lg:w-[30%] order-1 sm:order-2 sm:h-[75vh] sm:w-[40%] overflow-y-auto">
                 <div>
                   <Button
                     variant="contained"
@@ -323,7 +327,10 @@ function DashBoard() {
                         <ul className="list-disc pl-5 mt-2 text-sm">
                           <li>Unlimited AI summaries</li>
                           <li>Basic AI based Sentiment analysis</li>
-                          <li>Audience will be able to write long & descriptive feedbacks</li>
+                          <li>
+                            Audience will be able to write long & descriptive
+                            feedbacks
+                          </li>
                           <li>Increased Mesaage Limit</li>
                         </ul>
                       </div>
@@ -332,7 +339,7 @@ function DashBoard() {
                     actionText="Upgrade Now 🚀"
                   />
                 </div>
-                <div>
+                <div >
                   {showSummary && (
                     <Card
                       sx={{
@@ -347,6 +354,8 @@ function DashBoard() {
                         boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
                         border: "1px solid rgba(255, 255, 255, 0.3)",
                         borderRadius: "1rem",
+                        overflowY: "auto",
+                        border : "2px solid #FFD700", // Gold border
                         p: { xs: 2, sm: 3 }, // responsive padding
                       }}
                     >
@@ -373,41 +382,44 @@ function DashBoard() {
                           ✨ AI Summary
                         </Typography>
 
-                       {/** Responsive info blocks **/}
-    {[
-      { label: "Overall Sentiment", value: aiSummary.overallSentiment },
-      { label: "Themes", value: aiSummary.themes },
-      { label: "Summary", value: aiSummary.summary },
-    ].map((item) => (
-      <Typography
-        key={item.label}
-        variant="body2"
-        sx={{
-          color: "white",
-          opacity: 0.8,
-          fontSize: { xs: "0.9rem", sm: "1rem" },
-          wordBreak: "break-word", // prevent overflow on long text
-        }}
-      >
-        <Box
-          component="span"
-          sx={{
-            backgroundColor: "#FFA500",
-            color: "black",
-            px: 0.5,
-            py: 0.25,
-            borderRadius: 1,
-            mr: 0.5,
-            fontWeight: "bold",
-            fontSize: { xs: "0.8rem", sm: "0.9rem" },
-          }}
-        >
-          {item.label}
-        </Box>
-        : {item.value}
-      </Typography>
-    ))}
-  </CardContent>
+                        {/** Responsive info blocks **/}
+                        {[
+                          {
+                            label: "Overall Sentiment",
+                            value: aiSummary.overallSentiment,
+                          },
+                          { label: "Themes", value: aiSummary.themes },
+                          { label: "Summary", value: aiSummary.summary },
+                        ].map((item) => (
+                          <Typography
+                            key={item.label}
+                            variant="body2"
+                            sx={{
+                              color: "white",
+                              opacity: 0.8,
+                              fontSize: { xs: "0.9rem", sm: "1rem" },
+                              wordBreak: "break-word", // prevent overflow on long text
+                            }}
+                          >
+                            <Box
+                              component="span"
+                              sx={{
+                                backgroundColor: "#FFA500",
+                                color: "black",
+                                px: 0.5,
+                                py: 0.25,
+                                borderRadius: 1,
+                                mr: 0.5,
+                                fontWeight: "bold",
+                                fontSize: { xs: "0.8rem", sm: "0.9rem" },
+                              }}
+                            >
+                              {item.label}
+                            </Box>
+                            : {item.value}
+                          </Typography>
+                        ))}
+                      </CardContent>
                     </Card>
                   )}
                 </div>
