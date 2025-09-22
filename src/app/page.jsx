@@ -9,17 +9,42 @@ import { useEffect } from "react";
 import Animation from "../Components/SkeletonAnimation"
 
 export default function Home() {
-  const router = useRouter();
-  const { data: session, status } = useSession();
+    const router = useRouter();
+  const {data:session,status} = useSession();
+
+  useEffect(()=>{
+    console.log("Session status: " , status , session, "router:", router);
+    if(status === "authenticated"){
+      router.replace("/Dashboard");
+    }
+  },[status,session,router])
 
   if (status === "loading") {
-    return <Animation />; // show skeleton while session loads
+    return <Animation />;
   }
 
   if (status === "authenticated") {
-    router.replace("/Dashboard"); // redirect
-    return null; // don't render anything while redirecting
+    return null; // prevent showing LoginCard while redirecting
   }
 
-  return <LoginCard />; // show login if not authenticated
+  return (
+    <div  >
+
+       <main className="container mx-auto flex flex-col justify-center  h-[90vh] ">
+         {/* <h1 className="container mx-auto bg-white/20 backdrop-blur-md rounded-2xl p-6 shadow-lg text-center text-white opacity-90 font-bold text-2xl max-w-3xl">
+          Welcome to TruFeedback – A convenient platform to receive anonymous
+          feedback & messages
+        </h1> */}
+        <div className="">
+          <Box 
+   display="flex"
+   justifyContent='center'
+   alignItems='center'
+   >
+        <LoginCard/>
+        </Box>
+        </div>
+       </main>
+    </div>
+  );
 }
