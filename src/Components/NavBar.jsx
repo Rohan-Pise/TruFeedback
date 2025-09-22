@@ -25,7 +25,7 @@ export default function Navbar() {
 
   React.useEffect(()=>{
    if(session?.user?.isSubscribed){
-    openDialog(false);
+    setOpenDialog(false);
    }
   },[session?.user?.isSubscribed])
 

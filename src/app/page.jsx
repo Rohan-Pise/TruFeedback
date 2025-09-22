@@ -13,18 +13,33 @@ export default function Home() {
   const {data:session,status} = useSession();
 
   useEffect(()=>{
-    console.log("Session status: " , status , session, "router:", router);
+    console.log("Session status: " , status , session);
     if(status === "authenticated"){
       router.replace("/Dashboard");
     }
-  },[status,session,router])
+  },[status,router])
 
-  if (status === "loading") {
-    return <Animation />;
-  }
+  if(status === "authenticated"){
+    return(
+      <>
+      <main className="container mx-auto flex flex-col justify-center  h-[90vh] ">
+         {/* <h1 className="container mx-auto bg-white/20 backdrop-blur-md rounded-2xl p-6 shadow-lg text-center text-white opacity-90 font-bold text-2xl max-w-3xl">
+          Welcome to TruFeedback – A convenient platform to receive anonymous
+          feedback & messages
+        </h1> */}
+        <div className="">
+          <Box 
+   display="flex"
+   justifyContent='center'
+   alignItems='center'
+   >
+        <Animation/>
+        </Box>
+        </div>
+       </main>
 
-  if (status === "authenticated") {
-    return null; // prevent showing LoginCard while redirecting
+      </>
+    )
   }
 
   return (
@@ -41,7 +56,7 @@ export default function Home() {
    justifyContent='center'
    alignItems='center'
    >
-        <LoginCard/>
+        {status === "unauthenticated" && (<LoginCard/>)}
         </Box>
         </div>
        </main>
