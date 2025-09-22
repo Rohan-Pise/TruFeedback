@@ -18,7 +18,7 @@ const UserMessagingPage = ({ params }) => {
   const [isAcceptingMessages, setIsAcceptingMessages] = useState(null);
   const[openSuggestions,setOpenSuggestions]=useState(false);
   const[suggestions,setSuggestions]=useState([]);
-  const { username } = React.use(params);
+  const { username } = params; 
 
   useEffect(() => {
     const checkSubscriptionStatus = async () => {

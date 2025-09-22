@@ -242,7 +242,7 @@ function DashBoard() {
                           <Typography sx={{
 
                           }}
-                            variant="body" color="text.secondary">
+                            variant="body1" color="text.secondary">
                             {new Date(feedback.createdAt).toLocaleDateString(
                               "en-GB",
                               {
