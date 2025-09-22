@@ -13,10 +13,11 @@ export default function Home() {
   const {data:session,status} = useSession();
 
   useEffect(()=>{
+    console.log("Session status: " , status , session);
     if(status === "authenticated"){
       router.replace("/Dashboard");
     }
-  },[status,router])
+  },[status,session,router])
 
   return (
     <div  >
