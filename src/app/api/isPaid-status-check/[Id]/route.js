@@ -26,6 +26,7 @@ export async function GET(req, { params }) {
       {
         isSubscribed,
         isAcceptingMessages: user.isAcceptingMessages,
+        username : user.name,
       },
       { status: 200 }
     );

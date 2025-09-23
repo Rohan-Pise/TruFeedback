@@ -16,17 +16,19 @@ const UserMessagingPage = ({ params }) => {
   } = useForm();
   const [isSubscribed, setIsSubscribed] = useState(null);
   const [isAcceptingMessages, setIsAcceptingMessages] = useState(null);
+  const [userName , setUserName] = useState("");
   const[openSuggestions,setOpenSuggestions]=useState(false);
   const[suggestions,setSuggestions]=useState([]);
-  const { username } = React.use(params);
+  const { userId } = React.use(params);
 
   useEffect(() => {
     const checkSubscriptionStatus = async () => {
-      console.log(`/api/isPaid-status-check/${username}`);
-      const response = await axios.get(`/api/isPaid-status-check/${username}`);
+      console.log(`/api/isPaid-status-check/${userId}`);
+      const response = await axios.get(`/api/isPaid-status-check/${userId}`);
       console.log("response", response.data);
       setIsSubscribed(response.data.isSubscribed);
       setIsAcceptingMessages(response.data.isAcceptingMessages);
+      setUserName(response.data.username);
       // console.log("isAcceptingMessages", response.data.isAcceptingMessages);
       // console.log("isSubscribed", response.data.isSubscribed);
     };
@@ -38,7 +40,7 @@ const UserMessagingPage = ({ params }) => {
       console.log(data);
       if (isAcceptingMessages) {
         await axios.post("/api/send-feedback", {
-          userId: username,
+          userId: userId,
           message: data.message,
         });
         toast.success("Message Sent Successfully");
@@ -67,6 +69,9 @@ const UserMessagingPage = ({ params }) => {
 
   return (
     <div>
+      <div className="flex items-center justify-center mt-20">
+       <h1 className="  p-3 text-white/60 text-3xl ">Write your TruFeedback for <span className="bg-white/10 backdrop-blur-md p-2 rounded-lg text-white/70">{userName}</span> </h1>
+      </div>
       <div className="flex flex-col items-center justify-center md:flex-row gap-4 mt-10">
         <form onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
@@ -90,7 +95,7 @@ const UserMessagingPage = ({ params }) => {
                 message: "Message must not contain only number or special character or combination of them it must contain some meaningfull words",
               },
             })}
-            placeholder={`You can write your message Here ....`}
+            placeholder={`You can write your message for  ${userName} here ....`}
           />
           {errors.message && (
             
@@ -139,7 +144,12 @@ const UserMessagingPage = ({ params }) => {
                 setValue("message",suggestion);
                 setOpenSuggestions(false);
               }}>
-              <CardContent>
+              <CardContent
+              sx={{
+                color: "white",
+                opacity: 0.8,
+                cursor: "pointer",
+              }}>
                 {suggestion}
               </CardContent>
             </Card>
